@@ -18,3 +18,4 @@ Route::get('/', function () {
 });
 
 Route::resource('/home', 'HomeController');
+Route::resource('/carteira', 'CarteiraController');

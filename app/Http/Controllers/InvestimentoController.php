@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Carteira;
+use App\Investimento;
 use App\TipoInvestimento;
 use Illuminate\Http\Request;
 
-class CarteiraController extends Controller
+class InvestimentoController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +15,8 @@ class CarteiraController extends Controller
      */
     public function index()
     {
-        $investimentos = Carteira::with('tipoInvestimento')->paginate(10);
-        return view('carteira.index', ['investimentos' => $investimentos]);
+        $investimentos = Investimento::with('tipoInvestimento')->paginate(10);
+        return view('investimento.index', ['investimentos' => $investimentos]);
     }
 
     /**
@@ -27,7 +27,7 @@ class CarteiraController extends Controller
     public function create()
     {
         $tipo_investimentos = TipoInvestimento::all();
-        return view('carteira.create', ['tipo_investimentos' => $tipo_investimentos]);
+        return view('investimento.create', ['tipo_investimentos' => $tipo_investimentos]);
     }
 
     /**
@@ -39,17 +39,17 @@ class CarteiraController extends Controller
     public function store(Request $request)
     {
         // dd($request->all());
-        Carteira::create($request->all());
-        return redirect()->route('carteira.index');
+        Investimento::create($request->all());
+        return redirect()->route('investimento.index');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Carteira  $carteira
+     * @param  \App\Investimento  $investimento
      * @return \Illuminate\Http\Response
      */
-    public function show(Carteira $carteira)
+    public function show(Investimento $investimento)
     {
         //
     }
@@ -57,22 +57,22 @@ class CarteiraController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Carteira  $carteira
+     * @param  \App\Investimento  $investimento
      * @return \Illuminate\Http\Response
      */
-    public function edit(Carteira $carteira)
+    public function edit(Investimento $investimento)
     {
-        dd($carteira);
+        dd($investimento);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Carteira  $carteira
+     * @param  \App\Investimento  $investimento
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Carteira $carteira)
+    public function update(Request $request, Investimento $investimento)
     {
         //
     }
@@ -80,10 +80,10 @@ class CarteiraController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Carteira  $carteira
+     * @param  \App\Investimento  $investimento
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Carteira $carteira)
+    public function destroy(Investimento $investimento)
     {
         //
     }

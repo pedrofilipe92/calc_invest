@@ -1,7 +1,7 @@
 @extends('layouts.basico')
 
 @section('conteudo')
-    <form action="{{ route('carteira.store') }}" method="post">
+    <form action="{{ route('investimento.store') }}" method="post">
         @csrf
         <select name="tipo_investimento_id">
             <option value="">---Selecione o investimento---</option>

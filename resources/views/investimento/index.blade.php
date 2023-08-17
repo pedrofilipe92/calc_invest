@@ -17,7 +17,7 @@
                     <td>{{ $investimento->tipoInvestimento->tipo_investimento }}</td>
                     <td>{{ $investimento->capital_inicial }}</td>
                     <td>{{ $investimento->prazo }}</td>
-                    <td><a href="{{ route('carteira.edit', $investimento->id) }}">Editar</a></td>
+                    <td><a href="{{ route('investimento.edit', $investimento->id) }}">Editar</a></td>
                     <td><a href="">Resgatar</a></td>
                 </tr>
             @endforeach

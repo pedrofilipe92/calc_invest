@@ -20,6 +20,7 @@ Route::get('/', function () {
 
 Route::resource('/calculadora', 'CalculadoraController');
 Route::resource('/investimento', 'InvestimentoController');
+Route::resource('/carteira', 'CarteiraController');
 
 Auth::routes();
 

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Investimento;
+use App\TipoInvestimento;
 
 class HomeController extends Controller
 {
@@ -14,8 +14,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $investimentos = Investimento::all();
-        return view('index', ['investimentos' => $investimentos]);
+        $tipo_investimentos = TipoInvestimento::all();
+        return view('index', ['tipo_investimentos' => $tipo_investimentos]);
     }
 
     /**
@@ -36,9 +36,9 @@ class HomeController extends Controller
      */
     public function store(Request $request)
     {
-        $investimentos = Investimento::all();
+        $tipo_investimentos = TipoInvestimento::all();
         $retorno = [
-            'investimento'          => $request->investimento,
+            'tipo_investimento'     => $request->tipo_investimento,
             'valor'                 => $request->valor,
             'prazo'                 => $request->prazo,
         ];
@@ -63,7 +63,7 @@ class HomeController extends Controller
         $retorno['total_aplicacao'] = $total_aplicacao;
 
         // calculando imposto de renda
-        if ($retorno['investimento'] == 'CDB') {
+        if ($retorno['tipo_investimento'] == 'CDB') {
             if($retorno['prazo'] <= 6) {
                 $ir = 0.225;
             } else if($retorno['prazo'] > 6 && $retorno['prazo'] <= 12) {
@@ -75,12 +75,12 @@ class HomeController extends Controller
             }
             $retorno['ir'] = $ir * 100 . '%';
             $retorno['rendimento_liquido'] = $rendimento_bruto - ($rendimento_bruto * $ir);
-        } else if ($retorno['investimento'] == 'LCA') {
+        } else {
             $retorno['ir'] = '0%';
             $retorno['rendimento_liquido'] = $rendimento_bruto;
         }
 
-        return view('index', ['investimentos' => $investimentos, 'retorno' => $retorno]);
+        return view('index', ['tipo_investimentos' => $tipo_investimentos, 'retorno' => $retorno]);
     }
 
     /**

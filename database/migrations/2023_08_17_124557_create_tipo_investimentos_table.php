@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateInvestimentosTable extends Migration
+class CreateTipoInvestimentosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,9 @@ class CreateInvestimentosTable extends Migration
      */
     public function up()
     {
-        Schema::create('investimentos', function (Blueprint $table) {
+        Schema::create('tipo_investimentos', function (Blueprint $table) {
             $table->id();
-            $table->string('investimento', 50);
+            $table->string('tipo_investimento', 50);
             $table->timestamps();
         });
     }
@@ -27,6 +27,6 @@ class CreateInvestimentosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('investimentos');
+        Schema::dropIfExists('tipo_investimentos');
     }
 }

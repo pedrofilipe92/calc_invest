@@ -5,10 +5,10 @@
     <body>
         <form action="{{ route('home.store') }}" method="post">
             @csrf
-            <select name="investimento">
+            <select name="tipo_investimento">
                 <option value="">---Selecione o investimento---</option>
-                @foreach ($investimentos as $investimento)
-                    <option value="{{ $investimento['investimento'] }}">{{ $investimento['investimento'] }}</option>
+                @foreach ($tipo_investimentos as $tipo_investimento)
+                    <option value="{{ $tipo_investimento['tipo_investimento'] }}">{{ $tipo_investimento['tipo_investimento'] }}</option>
                 @endforeach
             </select>
             <input name="valor" type="text" placeholder="Valor">
@@ -19,7 +19,7 @@
         </form>
 
         @if (isset($retorno))
-            Ao final do seu investimento de {{ $retorno['valor'] }} no {{ $retorno['investimento'] }} você terá {{ $retorno['total_aplicacao'] }}.
+            Ao final do seu investimento de {{ $retorno['valor'] }} no {{ $retorno['tipo_investimento'] }} você terá {{ $retorno['total_aplicacao'] }}.
             O seu investimento terá incidência de {{ $retorno['ir'] }} de imposto de renda e terá um retorno líquido de {{ $retorno['rendimento_liquido'] }}.
         @endif
     </body>

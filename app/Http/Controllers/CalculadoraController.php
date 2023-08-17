@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Investimento;
-use App\TipoInvestimento;
 use Illuminate\Http\Request;
+use App\TipoInvestimento;
 
-class InvestimentoController extends Controller
+class CalculadoraController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -25,8 +24,8 @@ class InvestimentoController extends Controller
      */
     public function index()
     {
-        $investimentos = Investimento::with('tipoInvestimento')->paginate(10);
-        return view('investimento.index', ['investimentos' => $investimentos]);
+        $tipo_investimentos = TipoInvestimento::all();
+        return view('index', ['tipo_investimentos' => $tipo_investimentos]);
     }
 
     /**
@@ -36,8 +35,7 @@ class InvestimentoController extends Controller
      */
     public function create()
     {
-        $tipo_investimentos = TipoInvestimento::all();
-        return view('investimento.create', ['tipo_investimentos' => $tipo_investimentos]);
+        //
     }
 
     /**
@@ -48,18 +46,16 @@ class InvestimentoController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request->all());
-        Investimento::create($request->all());
-        return redirect()->route('investimento.index');
+        //
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Investimento  $investimento
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Investimento $investimento)
+    public function show($id)
     {
         //
     }
@@ -67,22 +63,22 @@ class InvestimentoController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Investimento  $investimento
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Investimento $investimento)
+    public function edit($id)
     {
-        dd($investimento);
+        //
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Investimento  $investimento
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Investimento $investimento)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -90,10 +86,10 @@ class InvestimentoController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Investimento  $investimento
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Investimento $investimento)
+    public function destroy($id)
     {
         //
     }

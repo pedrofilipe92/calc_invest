@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,5 +18,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::resource('/home', 'HomeController');
+Route::resource('/calculadora', 'CalculadoraController');
 Route::resource('/investimento', 'InvestimentoController');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

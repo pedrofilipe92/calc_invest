@@ -1,6 +1,6 @@
-@extends('layouts.basico')
+@extends('layouts.app')
 
-@section('conteudo')
+@section('content')
     <table border="1px">
         <thead>
             <tr>

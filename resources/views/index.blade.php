@@ -1,6 +1,6 @@
-@extends('layouts.basico')
+@extends('layouts.app')
 
-@section('conteudo')
+@section('content')
     <form action="{{ route('calculadora.store') }}" method="post">
         @csrf
         <select name="tipo_investimento">

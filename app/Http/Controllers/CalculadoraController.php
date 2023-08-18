@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Investimento;
 use Illuminate\Http\Request;
 use App\TipoInvestimento;
 
@@ -25,7 +26,7 @@ class CalculadoraController extends Controller
     public function index()
     {
         $tipo_investimentos = TipoInvestimento::all();
-        return view('index', ['tipo_investimentos' => $tipo_investimentos]);
+        return view('calculadora.index', ['tipo_investimentos' => $tipo_investimentos]);
     }
 
     /**
@@ -57,7 +58,9 @@ class CalculadoraController extends Controller
      */
     public function show($id)
     {
-        //
+        $tipo_investimentos = TipoInvestimento::all();
+        $investimento = Investimento::find($id);
+        return view('calculadora.index', ['tipo_investimentos' => $tipo_investimentos, 'investimento' => $investimento]);
     }
 
     /**
@@ -92,5 +95,9 @@ class CalculadoraController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function calcular(Request $request) {
+        dd($request->all());
     }
 }

@@ -12,6 +12,7 @@
                         <th>Prazo</th>
                         <th></th>
                         <th></th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -23,6 +24,7 @@
                             <td>{{ $investimento->prazo }}</td>
                             <td><a href="{{ route('investimento.edit', $investimento->id) }}">Editar</a></td>
                             <td><a href="">Resgatar</a></td>
+                            <td><a href="{{ route('calculadora.show', $investimento->id) }}">Calcular Rendimento</a></td>
                         </tr>
                     @endforeach
                 </tbody>

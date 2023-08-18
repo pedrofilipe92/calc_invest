@@ -22,6 +22,7 @@ Route::resource('/calculadora', 'CalculadoraController');
 Route::post('/calculadora/calcular', 'CalculadoraController@calcular')->name('calculadora.calcular');
 Route::resource('/investimento', 'InvestimentoController');
 Route::resource('/carteira', 'CarteiraController');
+Route::resource('/carteira-investimento', 'CarteiraInvestimentoController');
 
 Auth::routes();
 

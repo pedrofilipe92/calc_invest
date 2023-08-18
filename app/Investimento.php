@@ -20,4 +20,8 @@ class Investimento extends Model
     public function tipoInvestimento() {
         return $this->belongsTo('App\TipoInvestimento');
     }
+
+    public function carteiras() {
+        return $this->belongsToMany('App\Carteira', 'carteira_investimentos');
+    }
 }

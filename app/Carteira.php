@@ -8,8 +8,9 @@ class Carteira extends Model
 {
     protected $fillable = [
         'user_id',
+        // 'saldo',
         'qtd_investimentos',
-        'total_aplicado'
+        'total_aplicado',
     ];
 
     protected $with = ['user'];
@@ -19,6 +20,6 @@ class Carteira extends Model
     }
 
     public function investimentos() {
-        return $this->hasMany('App\Investimento');
+        return $this->belongsToMany('App\Investimento', 'carteira_investimentos');
     }
 }

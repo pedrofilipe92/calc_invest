@@ -14,6 +14,7 @@
                         <th>Fixação</th>
                         <th>Taxa</th>
                         <th>Vencimento</th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -25,6 +26,13 @@
                             <td>{{ $investimento->pre_pos_fixado }}</td>
                             <td>{{ $investimento->taxa }}</td>
                             <td>{{ $investimento->vencimento }}</td>
+                            <td>
+                                {{-- <form id="form_{{ $investimento->id }}" action="{{ route('carteira-investimento.store') }} " method="post">
+                                    @csrf
+                                    <a href="#" onclick="document.getElementById('form_{{ $investimento->id }}').submit()">Investir</a>
+                                </form> --}}
+                                <a href="{{ route('carteira-investimento.show', $investimento->id) }}">Investir</a>
+                            </td>
                         </tr>
                     @endforeach
                 </tbody>

@@ -10,13 +10,15 @@
                     @foreach ($tipo_investimentos as $tipo_investimento)
                         <option
                             value="{{ $tipo_investimento['tipo_investimento'] }}"
-                            {{ $tipo_investimento['tipo_investimento'] == $investimento->tipoInvestimento->tipo_investimento ? 'selected' : '' }}
+                            @if (isset($investimento))
+                                {{ $tipo_investimento['tipo_investimento'] == $investimento->tipoInvestimento->tipo_investimento ? 'selected' : '' }}
+                            @endif
         
                         >{{ $tipo_investimento['tipo_investimento'] }}
                         </option>
                     @endforeach
                 </select>
-                <input name="valor" type="text" placeholder="Valor" value="{{ $investimento->capital_inicial ?? '' }}">
+                <input name="valor" type="text" placeholder="Valor" value="{{ $investimento->capital_investido ?? '' }}">
                 <input name="rentabilidade" type="text" placeholder="Rentabilidade">
                 <input name="cdi" type="text" placeholder="CDI">
                 <input name="prazo" type="text" placeholder="Prazo" value="{{ $investimento->prazo ?? '' }}">

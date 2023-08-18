@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Investimento;
 use App\TipoInvestimento;
-use App\Carteira;
 use Illuminate\Http\Request;
 
 class InvestimentoController extends Controller
@@ -26,8 +25,7 @@ class InvestimentoController extends Controller
      */
     public function index()
     {
-        $carteira_id = Carteira::where('user_id', auth()->user()->id)->first()->id;
-        $investimentos = Investimento::where('carteira_id', $carteira_id)->paginate(10);
+        $investimentos = Investimento::paginate(10);
         return view('investimento.index', ['investimentos' => $investimentos]);
     }
 
@@ -39,8 +37,7 @@ class InvestimentoController extends Controller
     public function create()
     {
         $tipo_investimentos = TipoInvestimento::all();
-        $carteira_id = Carteira::where('user_id', auth()->user()->id)->first()->id;
-        return view('investimento.create', ['tipo_investimentos' => $tipo_investimentos, 'carteira_id' => $carteira_id]);
+        return view('investimento.create', ['tipo_investimentos' => $tipo_investimentos]);
     }
 
     /**
@@ -52,12 +49,6 @@ class InvestimentoController extends Controller
     public function store(Request $request)
     {
         Investimento::create($request->all());
-
-        // altera qtd_investimentos e total_aplicado na Carteira
-        $carteira = Carteira::find($request->carteira_id);
-        $carteira->qtd_investimentos++;
-        $carteira->total_aplicado += $request->capital_inicial;
-        $carteira->save();
 
         return redirect()->route('investimento.index');
     }

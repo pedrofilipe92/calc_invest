@@ -15,7 +15,7 @@ class Investimento extends Model
         'vencimento',
     ];
 
-    protected $with = ['tipoInvestimento'];
+    protected $with = ['tipoInvestimento', 'carteiraInvestimento'];
 
     public function tipoInvestimento() {
         return $this->belongsTo('App\TipoInvestimento');
@@ -23,5 +23,9 @@ class Investimento extends Model
 
     public function carteiras() {
         return $this->belongsToMany('App\Carteira', 'carteira_investimentos');
+    }
+
+    public function carteiraInvestimento() {
+        return $this->hasOne('App\CarteiraInvestimento');
     }
 }

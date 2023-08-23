@@ -53,7 +53,7 @@
                             <td>{{ $investimento->taxa }}</td>
                             <td>{{ $investimento->vencimento }}</td>
                             <td>{{ $investimento->carteiraInvestimento->capital_investido ?? '' }}</td>
-                            <td><a href="{{ route('calculadora.calcular', $investimento) }}">Calcular rendimento</a></td>
+                            <td><a href="{{ route('calculadora.show', $investimento->id) }}">Calcular rendimento</a></td>
                         </tr>
                     @endforeach
                 </tbody>

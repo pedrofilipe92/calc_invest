@@ -98,6 +98,48 @@ class CalculadoraController extends Controller
     }
 
     public function calcular(Request $request) {
-        dd($request->all());
+        $retorno = [
+            'tipo' => $request->tipo_investimento,
+            'valor_inicial' => $request->valor,
+            'taxa' => ($request->taxa / 100) / 12,
+            'cdi' => $request->cdi,
+            'vencimento' => $request->vencimento,
+        ];
+
+        if ($retorno['tipo'] == 'CDB') {
+            if ($retorno['vencimento'] <= 6) {
+                $ir = 0.225;
+            } elseif ($retorno['vencimento'] > 6 && $retorno['vencimento'] <= 12) {
+                $ir = 0.2;
+            } elseif ($retorno['vencimento'] > 12 && $retorno['vencimento'] <=24) {
+                $ir = 0.175;
+            } elseif ($retorno['vencimento'] > 24) {
+                $ir = 0.15;
+            }
+            
+            $retorno['taxa'] *= $request->cdi;
+            $retorno['taxa'] /= 100;
+        } elseif ($retorno['tipo'] == 'LCA') {
+            $ir = 0;
+        } else {
+            $ir = 0.15;
+        }
+
+        $valor_aplicado = $retorno['valor_inicial'];
+        $retorno['rendimento_bruto'] = 0;
+        $retorno['rendimentos_mensais'] = [];
+        for ($i = 1; $i <= $retorno['vencimento']; $i++) {
+            $redimento_mensal = $valor_aplicado * $retorno['taxa'];
+            $retorno['rendimento_bruto'] += $redimento_mensal;
+            $valor_aplicado += $retorno['rendimento_bruto'];
+            array_push($retorno['rendimentos_mensais'], $redimento_mensal);
+        }
+
+        $retorno['rendimento_liquido'] = $retorno['rendimento_bruto'] - ($retorno['rendimento_bruto'] * $ir);
+        return view('calculadora.resultado', ['retorno' => $retorno]);
+    }
+
+    public function resultado() {
+
     }
 }

@@ -18,10 +18,10 @@
                         </option>
                     @endforeach
                 </select>
-                <input name="valor" type="text" placeholder="Valor" value="{{ $investimento->capital_investido ?? '' }}">
-                <input name="rentabilidade" type="text" placeholder="Rentabilidade">
+                <input name="valor" type="text" placeholder="Valor" value="{{ $investimento->carteiraInvestimento->capital_investido ?? '' }}">
+                <input name="taxa" type="text" placeholder="Taxa" value="{{ $investimento->taxa ?? '' }}">
                 <input name="cdi" type="text" placeholder="CDI">
-                <input name="prazo" type="text" placeholder="Prazo" value="{{ $investimento->prazo ?? '' }}">
+                <input name="vencimento" type="text" placeholder="Vencimento" value="{{ $investimento->vencimento ?? '' }}">
                 <button class="btn-primary" type="submit">Calcular</button>
             </form>
         </div>

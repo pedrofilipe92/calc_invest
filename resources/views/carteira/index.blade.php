@@ -32,6 +32,7 @@
             </form>
         </div>
         <hr>
+        <h4 class="row justify-content-center">Meus Investimentos</h4>
         <div class="row justify-content-center">
             <table border="1px">
                 <thead>
@@ -40,6 +41,7 @@
                         <th>Fixação da taxa</th>
                         <th>Taxa</th>
                         <th>Vencimento</th>
+                        <th>Capital Investido</th>
                         <th></th>
                     </tr>
                 </thead>
@@ -50,6 +52,7 @@
                             <td>{{ $investimento->pre_pos_fixado }}</td>
                             <td>{{ $investimento->taxa }}</td>
                             <td>{{ $investimento->vencimento }}</td>
+                            <td>{{ $investimento->carteiraInvestimento->capital_investido ?? '' }}</td>
                             <td><a href="{{ route('calculadora.calcular', $investimento) }}">Calcular rendimento</a></td>
                         </tr>
                     @endforeach

@@ -61,7 +61,7 @@ class InvestimentoController extends Controller
      */
     public function show(Investimento $investimento)
     {
-        //
+        return view('investimento.show', ['investimento' => $investimento]);
     }
 
     /**

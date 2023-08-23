@@ -37,9 +37,18 @@ class CarteiraInvestimentoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $user_id = auth()->user()->id;
+        $carteira_id = Carteira::where('user_id', $user_id)->first()->id;
+    
+        CarteiraInvestimento::create([
+            'carteira_id' => $carteira_id,
+            'investimento_id' => $request->investimento_id,
+            'capital_investido' => $request->capital_investido
+        ]);
+    
+        return redirect()->route('carteira.index');
     }
-
+    
     /**
      * Display the specified resource.
      *
@@ -48,15 +57,7 @@ class CarteiraInvestimentoController extends Controller
      */
     public function show($id)
     {
-        $user_id = auth()->user()->id;
-        $carteira_id = Carteira::where('user_id', $user_id)->first()->id;
-
-        CarteiraInvestimento::create([
-            'carteira_id' => $carteira_id,
-            'investimento_id' => $id
-        ]);
-
-        return redirect()->route('carteira.index');
+        //
     }
 
     /**

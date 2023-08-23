@@ -49,7 +49,7 @@
                                 </td>
                             @else
                                 <td>
-                                    <a href="{{ route('carteira-investimento.show', $investimento->id) }}">Investir</a>
+                                    <a href="{{ route('investimento.show', ['investimento' => $investimento->id]) }}">Investir</a>
                                 </td>
                             @endif
                         </tr>

@@ -30,7 +30,8 @@ class CreateCarteiraNewUser
         Carteira::create([
             'user_id'               => $event->user->id,
             'qtd_investimentos'     => 0,
-            'total_aplicado'        => 0
+            'total_aplicado'        => 0,
+            'saldo'                 => 0
         ]);
     }
 }

@@ -22,7 +22,7 @@
                 <input name="rentabilidade" type="text" placeholder="Rentabilidade">
                 <input name="cdi" type="text" placeholder="CDI">
                 <input name="prazo" type="text" placeholder="Prazo" value="{{ $investimento->prazo ?? '' }}">
-                <button type="submit">Calcular</button>
+                <button class="btn-primary" type="submit">Calcular</button>
             </form>
         </div>
     </div>

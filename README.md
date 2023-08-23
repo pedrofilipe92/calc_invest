@@ -1,1 +1,1 @@
-Calculadora de investimentos utilizando o framework Laravel.
+Platarforma de investimentos utilizando o framework Laravel.

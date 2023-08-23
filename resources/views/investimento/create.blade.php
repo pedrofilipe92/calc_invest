@@ -45,9 +45,9 @@
                     <input name="vencimento" type="text" placeholder="Vencimento" value="{{ $investimento->vencimento ?? '' }}">
 
                     @if (isset($investimento))
-                        <button type="submit">Editar</button>    
+                        <button class="btn-primary" type="submit">Editar</button>    
                     @else
-                        <button type="submit">Incluir</button>
+                        <button class="btn-primary" type="submit">Incluir</button>
                     @endif
             </form>
         </div>

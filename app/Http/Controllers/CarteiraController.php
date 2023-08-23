@@ -16,6 +16,7 @@ class CarteiraController extends Controller
     {
         $user_id = auth()->user()->id;
         $carteira = Carteira::where('user_id', $user_id)->first();
+        $carteira->qtd_investimentos = count($carteira->investimentos);
 
         return view('carteira.index', ['carteira' => $carteira]);
     }
@@ -72,7 +73,9 @@ class CarteiraController extends Controller
      */
     public function update(Request $request, Carteira $carteira)
     {
-        //
+        $carteira->saldo = $request->altera_saldo;
+        $carteira->save();
+        return redirect()->route('carteira.index');
     }
 
     /**

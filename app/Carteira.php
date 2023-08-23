@@ -8,9 +8,9 @@ class Carteira extends Model
 {
     protected $fillable = [
         'user_id',
-        // 'saldo',
         'qtd_investimentos',
         'total_aplicado',
+        'saldo',
     ];
 
     protected $with = ['user'];

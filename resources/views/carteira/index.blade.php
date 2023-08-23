@@ -22,6 +22,15 @@
                 </tbody>
             </table>
         </div>
+        <br>
+        <div class="row justify-content-center">
+            <form action="{{ route('carteira.update', ['carteira' => $carteira->id]) }}" method="post">
+                @method('PUT')
+                @csrf
+                <input name="altera_saldo" type="text" placeholder="Valor">
+                <button class="btn-primary" type="submit">Alterar Saldo</button>
+            </form>
+        </div>
         <hr>
         <div class="row justify-content-center">
             <table border="1px">

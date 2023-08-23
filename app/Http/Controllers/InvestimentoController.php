@@ -72,7 +72,8 @@ class InvestimentoController extends Controller
      */
     public function edit(Investimento $investimento)
     {
-        dd($investimento);
+        $tipo_investimentos = TipoInvestimento::all();
+        return view('investimento.create', ['tipo_investimentos' => $tipo_investimentos, 'investimento' => $investimento]);
     }
 
     /**
@@ -84,7 +85,8 @@ class InvestimentoController extends Controller
      */
     public function update(Request $request, Investimento $investimento)
     {
-        //
+        $investimento->update($request->all());
+        return redirect()->route('investimento.index');
     }
 
     /**
@@ -95,6 +97,7 @@ class InvestimentoController extends Controller
      */
     public function destroy(Investimento $investimento)
     {
-        //
+        $investimento->delete();
+        return redirect()->route('investimento.index');
     }
 }

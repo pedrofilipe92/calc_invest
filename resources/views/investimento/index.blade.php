@@ -1,9 +1,10 @@
 @extends('layouts.app')
 
 @section('content')
+    <div>
+        @include('investimento.layouts._partials.menu')
+    </div>
     <div class="content">
-        <a href="{{ route('investimento.index') }}">Lista de Investimentos</a>
-        <a href="{{ route('investimento.create') }}">Novo Investimento</a>
         <div class="row justify-content-center">
             <table border="1px">
                 <thead>
@@ -14,7 +15,12 @@
                         <th>Fixação</th>
                         <th>Taxa</th>
                         <th>Vencimento</th>
-                        <th></th>
+                        @if(auth()->user()->name == 'admin')
+                            <th></th>
+                            <th></th>
+                        @else
+                            <th></th>
+                         @endif
                     </tr>
                 </thead>
                 <tbody>
@@ -26,13 +32,26 @@
                             <td>{{ $investimento->pre_pos_fixado }}</td>
                             <td>{{ $investimento->taxa }}</td>
                             <td>{{ $investimento->vencimento }}</td>
-                            <td>
-                                {{-- <form id="form_{{ $investimento->id }}" action="{{ route('carteira-investimento.store') }} " method="post">
-                                    @csrf
-                                    <a href="#" onclick="document.getElementById('form_{{ $investimento->id }}').submit()">Investir</a>
-                                </form> --}}
-                                <a href="{{ route('carteira-investimento.show', $investimento->id) }}">Investir</a>
-                            </td>
+                            @if(auth()->user()->name == 'admin')
+                                <td>
+                                    <a href="{{ route('investimento.edit', $investimento->id) }}">Editar</a>
+                                </td>
+                                <td>
+                                    <form
+                                        id="form_{{ $investimento->id }}"
+                                        method="post"
+                                        action="{{ route('investimento.destroy', ['investimento' => $investimento->id]) }}"
+                                    >
+                                        @method('DELETE')
+                                        @csrf
+                                        <a href="#" onclick="document.getElementById('form_{{ $investimento->id }}').submit()">Excluir</a>
+                                    </form>
+                                </td>
+                            @else
+                                <td>
+                                    <a href="{{ route('carteira-investimento.show', $investimento->id) }}">Investir</a>
+                                </td>
+                            @endif
                         </tr>
                     @endforeach
                 </tbody>

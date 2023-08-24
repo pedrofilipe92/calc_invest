@@ -14,6 +14,6 @@ class TipoInvestimentoSeeder extends Seeder
     {
         TipoInvestimento::create(['tipo_investimento' => 'CDB']);
         TipoInvestimento::create(['tipo_investimento' => 'LCA']);
-        TipoInvestimento::create(['tipo_investimento' => 'TESOURO DIRETO']);
+        TipoInvestimento::create(['tipo_investimento' => 'TESOURO SELIC']);
     }
 }

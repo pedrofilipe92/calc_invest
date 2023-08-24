@@ -128,18 +128,20 @@ class CalculadoraController extends Controller
         $valor_aplicado = $retorno['valor_inicial'];
         $retorno['rendimento_bruto'] = 0;
         $retorno['rendimentos_mensais'] = [];
+        $retorno['valor_aplicado'] = [];
         for ($i = 1; $i <= $retorno['vencimento']; $i++) {
-            $redimento_mensal = $valor_aplicado * $retorno['taxa'];
-            $retorno['rendimento_bruto'] += $redimento_mensal;
-            $valor_aplicado += $retorno['rendimento_bruto'];
-            array_push($retorno['rendimentos_mensais'], $redimento_mensal);
+            $rendimento_mensal = number_format($valor_aplicado * $retorno['taxa'], 2, '.', '');
+
+            $retorno['rendimento_bruto'] += $rendimento_mensal;
+
+            $valor_aplicado += $rendimento_mensal;
+
+            array_push($retorno['rendimentos_mensais'], $rendimento_mensal);
+            array_push($retorno['valor_aplicado'], $valor_aplicado);
         }
 
         $retorno['rendimento_liquido'] = $retorno['rendimento_bruto'] - ($retorno['rendimento_bruto'] * $ir);
+
         return view('calculadora.resultado', ['retorno' => $retorno]);
-    }
-
-    public function resultado() {
-
     }
 }

@@ -9,6 +9,7 @@
                     <tr>
                         <th>Mês</th>
                         <th>Rendimento</th>
+                        <th>Valor Aplicado</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -16,6 +17,7 @@
                         <tr>
                             <td>{{ $i + 1 }}</td>
                             <td>{{ $retorno['rendimentos_mensais'][$i] }}</td>
+                            <td>{{ $retorno['valor_aplicado'][$i] }}</td>
                         </tr>
                     @endfor
                 </tbody>
